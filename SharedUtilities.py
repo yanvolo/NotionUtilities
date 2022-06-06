@@ -25,12 +25,13 @@ def getFullTable(client, tableID, filter=None):
 
 
 def loadCachedData(client, tableID, filter=None):
-    if not exists(tableID):
-        data = getFullTable(client, tableID, filter)
-        with open(tableID, 'wb') as file:
+    cache_file_path = f"data/{tableID}"
+    if not exists(cache_file_path):
+        data = getFullTable(client, cache_file_path, filter)
+        with open(cache_file_path, 'wb') as file:
             pickle.dump(data, file)
     else:
-        with open(tableID, 'rb') as file:
+        with open(cache_file_path, 'rb') as file:
             data = pickle.load(file)
     return data
 
