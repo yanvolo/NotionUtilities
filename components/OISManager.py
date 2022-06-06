@@ -2,14 +2,14 @@ import yaml
 from neo4j import GraphDatabase
 from notion_client import Client
 
-from SharedUtilities import loadCachedData
+from libraries.SharedUtilities import loadCachedData
 
 pages = {
     'notes': 'de64f103da6b4cdfb1ea155a5d6b9ed7',
     'references': '4bc3c2e0d9ef42038c52787f3e909c46'
 }
 
-with open('secrets/secrets.yml','r') as stream:
+with open('../secrets/secrets.yml', 'r') as stream:
     config = yaml.safe_load(stream)
 notion = Client(auth=config['token'])
 note_data = loadCachedData(notion, pages['notes'])
