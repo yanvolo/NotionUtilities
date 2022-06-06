@@ -1,0 +1,7 @@
+./secrets.json
+secrets
+secrets/*
+venv/
+venv/*
+.idea/
+.idea/*
