@@ -1,9 +1,6 @@
 import pickle
 from os.path import exists
 
-from neo4j import GraphDatabase
-
-
 def getFullTable(client, tableID, filter=None):
     page = 0
     all_results = []
@@ -34,29 +31,3 @@ def loadCachedData(client, tableID, filter=None):
         with open(cache_file_path, 'rb') as file:
             data = pickle.load(file)
     return data
-
-
-# class Neo4JDatabase:
-#     def __init__(self, uri, user, password):
-#         self.driver = GraphDatabase.driver(uri, auth=(user, password))
-#
-#     def close(self):
-#         self.driver.close()
-#
-#     def print_greeting(self, message):
-#         with self.driver.session() as session:
-#             greeting = session.write_transaction(self._create_and_return_greeting, message)
-#             return greeting
-#
-#
-#     @staticmethod
-#     def _create_and_return_greeting(tx, message):
-#         result = tx.run("CREATE (a:Greeting) "
-#                         "SET a.message = $message "
-#                         "RETURN a.message + ', from node ' + id(a)", message=message)
-#         return result.single()[0]
-
-
-# class PersonalNotionClient:
-#     def __init__(self, token):
-#         self.client = 0
